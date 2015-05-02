@@ -16,24 +16,29 @@ form
   color:#FFF;
 }
 
-
-#h1
+h1
 {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color:#FFF;
-  font-size:48px;
+	color:#FFF;
 }
 
-h1
+h2
 {
 	color:#FFF;
 }
 
 menu 
 {
+	color:#FFF;
 	width: 50%;
 	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+}
+
+#div
+{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
 }
