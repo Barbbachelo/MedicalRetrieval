@@ -1,17 +1,28 @@
 <HTML XMLns="http://www.w3.org/1999/xHTML"> 
   <head> 
  	<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="forms.css">
     <title>Login</title> 
   </head> 
   <body>
   <div align="center">
-	<div id="h1">Login</div>
-        <form >
-            User name:	<input type="text" name="user"> </label> &nbsp;
-            Password:	<input type="password" name="password"> </label> </br>
-            </br>
-            <input type="submit" value="Login" name="submit" />
-		</form>
+    <div id="div">
+			<form>
+              <ul class="form-style-1">
+                    <li>
+                        <label>Login<span class="required">*</span></label>
+                      <input type="text" name="user" class="field-long" />
+                    </li>
+                                        <li>
+                        <label>Password<span class="required">*</span></label>
+                      <input type="password" name="password" class="field-long" />
+                    </li>
+                     <li>
+                         <input type="submit" value="Login" name="submit" />
+                    </li>
+              </ul>
+          </form>
+          </div>
   </div>
   </body> 
 </html>

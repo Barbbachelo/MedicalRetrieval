@@ -1,0 +1,41 @@
+
+body 
+{
+    background-image: url(images/texture.png);
+	background-repeat: repeat;
+}
+
+h1
+{
+	font:"Lucida Sans Unicode", "Lucida Grande", sans-serif
+	color:#FFF;
+	text-align:center;
+}
+
+form
+{
+	color:#FFF
+}
+
+div
+{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
+}
+
+#header {
+    width: 100%;
+	top:50px;
+    position: relative;
+    text-align: center;
+}
+
+#header .close {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}

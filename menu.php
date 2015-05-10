@@ -8,7 +8,8 @@
  	<body>
    	<div id="menu" align="center">
    	  <h1>Main Menu</h1>
-       	<img src="images/addpatient.png" alt="Add Patient" width="400" height="150" id="add" onMouseOver="addMouseOver()" onMouseOut="addMouseOut()"/>
-      </div>
+      <h2><a href="addPatient.php">Add Patient</a></h2>
+      <h2><a href="viewData.php">View Data</a></h2>
+   	</div>
 </body>
  </html>
