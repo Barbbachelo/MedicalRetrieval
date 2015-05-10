@@ -1,25 +1,45 @@
 <HTML XMLns="http://www.w3.org/1999/xHTML"> 
 <head> 
  	<link rel="stylesheet" type="text/css" href="style.css">
+ 	<link rel="stylesheet" type="text/css" href="forms.css">
     <script src="script.js"></script>
 	<script src="updateFunction.js"></script>
     <title>View Data</title> 
  </head>
  <html>
  	<body>
+	        <div id="header"> 
+			<a href="login.php" class="close">Log Out</a>
+			</div>
    	<div align="center">
    	  <h1>View Data</h1>
    	</div>
       <div align="center" id='form'>
         <form >
-            First Name:	<input type="text" name="fName"> </label> 
-            Last Name:	<input type="text" name="lName"> </label> 
-            Patient ID:	<input type="text" name="PID"> </label> 
-            Gender:	<input type="text" name="gender"> </label> 
-            D.O.B:	<input type="text" name="DOB"> </label> 
-            CID:	<input type="text" name="CID"> </label> <br>
+		 <ul class="form-style-1">
+		  <li>
+            First Name:	<input type="text" name="fName" class="field-long"> </label> 
+			 </li>
+			 <li>
+            Last Name:	<input type="text" name="lName" class="field-long"> </label> 
+			 </li>
+			 <li>
+            Patient ID:	<input type="text" name="PID" class="field-long"> </label> 
+			 </li>
+			 <li>
+            Gender:	<input type="text" name="gender" class="field-long"> </label> 
+			 </li>
+			 <li>
+            D.O.B:	<input type="text" name="DOB" class="field-long"> </label> 
+			 </li>
+			 <li>
+            CID:	<input type="text" name="CID" class="field-long"> </label> <br>
+			 </li>
+			 <li>
             
             <input type="submit" value="Search" name="submit" />
+			 </li>
+			</ul>
 		</form>
   </div>
 </body>

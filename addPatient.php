@@ -15,26 +15,53 @@
             <form>
               <ul class="form-style-1">
                 <li>
-                    <label>Full Name <span class="required">*</span></label><input type="text" name="fName" class="field-divided" placeholder="First" />&nbsp;
-                    <input type="text" name="lName" class="field-divided" placeholder="Last" />
+                    <label>Full Name <span class="required">*</span></label><input type="text" name="fname" class="field-divided" placeholder="First" />&nbsp;
+                    <input type="text" name="lname" class="field-divided" placeholder="Last" />
                 </li>
                 <li>
 					<label>Gender <span class="required">*</span></label>
                     <input type="text" name="gender" class="field-long" />
                 </li>
                 <li>
-					<label>CID <span class="required">*</span></label>
-                	<input type="text" name="CID" class="field-long" placeholder="Seperate CIDs with a comma" />
+					<label>Child ID <span class="required">*</span></label>
+                	<input type="text" name="cid" class="field-long" />
                 </li>
                 <li>
 					<label>Post Code <span class="required">*</span></label>
-                    <input type="text" name="pCode" class="field-long" />
+                    <input type="text" name="pcode" class="field-long" />
                  </li>
+                <li>
+					<label>Date of Birth <span class="required">*</span></label>
+                    <input type="text" name="dob" class="field-long" />
+                 </li> 
+                <li>
+					<label>ICD<span class="required">*</span></label>
+                    <input type="text" name="ICD" class="field-long" placeholder="Seperate CIDs with a comma"  />
+                 </li>                           
                  <li>
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="submit" />
                  </li>
               </ul>
           </form>
 	</div>
 </body>
 </html>
+
+<?php
+if (isset($_GET['submit']))
+ {
+  $fName = $_GET['user'];
+  $lName = $_GET['lname'];
+  $Gender = $_GET['gender'];
+  $pCode = $_GET['pcdoe'];
+  $DOB = $_GET['dob'];
+  $CID = $_GET['cid'];
+  $ICD = $_GET['icd'];
+		
+		
+  $DBConnect = mysqli_connect("127.0.0.1", "root", "", "patients");
+  $SQLstring = "INSERT INTO patients(FName, LName, PCode, Gender, D.O.B, CID, ICD) VALUES ($fName, $lName, $pCode, $Gender, $DOB, $CID, $ICD);";
+  print($SQLstring);
+  mysqli_query($DBConnect, $SQLstring);
+ }
+?>
