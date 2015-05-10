@@ -2,6 +2,7 @@
 <head> 
  	<link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
+	<script src="updateFunction.js"></script>
     <title>View Data</title> 
  </head>
  <html>
@@ -45,10 +46,11 @@ if (isset($_GET['submit']))
 	echo "<tr>
 	<th>First Name</th>
 	<th>Last Name</th>
-	<th>Patient ID</th>
 	<th>Gender</th>
 	<th>D.O.B</th>
+	<th>PostCode</th>
 	<th>CID</th>
+	<th>Action</th>
 	</tr>";
 	$row = mysqli_fetch_row($search);
 	while ($row) 
@@ -58,7 +60,10 @@ if (isset($_GET['submit']))
 		echo "<td>{$row[2]}</td>";
 		echo "<td>{$row[3]}</td>";
 		echo "<td>{$row[4]}</td>";
-		echo "<td>{$row[5]}</td>";
+		$id = $row[5];
+		echo "<td>{$id}</td>";
+		
+		echo "<td><input type='submit' value='Update' name='submit' onclick='updateFunction({$id})'/></td></tr>";
 		$row = mysqli_fetch_row($search);
 	}
 	echo "</table>";	
