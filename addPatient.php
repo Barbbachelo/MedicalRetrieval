@@ -53,7 +53,7 @@ if (isset($_GET['submit']))
   $fName = $_GET['user'];
   $lName = $_GET['lname'];
   $Gender = $_GET['gender'];
-  $pCode = $_GET['pcdoe'];
+  $pCode = $_GET['pcode'];
   $DOB = $_GET['dob'];
   $CID = $_GET['cid'];
   $ICD = $_GET['icd'];
