@@ -1,0 +1,91 @@
+<<<<<<< HEAD
+body
+{		
+	font-family: Arial, Verdana, sans-serif;
+	color: #665544;
+}
+h1
+{
+
+	color:#000000;
+	text-align:center;
+}
+
+homebutton
+{
+	position:fixed;
+	top:20px;
+	left:0px;
+=======
+
+body 
+{
+    background-image: url(images/texture.png);
+	background-repeat: repeat;
+}
+
+h1
+{
+	font:"Lucida Sans Unicode", "Lucida Grande", sans-serif
+	color:#FFF;
+	text-align:center;
+>>>>>>> origin/master
+}
+
+form
+{
+<<<<<<< HEAD
+	color:#000000;
+}
+div
+{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+=======
+	color:#FFF
+}
+
+div
+{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
+>>>>>>> origin/master
+}
+
+#header {
+    width: 100%;
+	top:50px;
+    position: relative;
+    text-align: center;
+}
+
+#header .close {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+<<<<<<< HEAD
+}
+
+#header .menu {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+
+/* unvisited link */
+a:link {
+    color: #000000;
+}
+
+/* visited link */
+a:visited {
+    color: #000000;
+=======
+>>>>>>> origin/master
+}

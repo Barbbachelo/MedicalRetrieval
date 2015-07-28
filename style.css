@@ -1,39 +1,72 @@
-@charset "utf-8";
-/* CSS Document */
+* {
+font-family: Arial, Verdana, sans-serif;
+color: #665544;
+text-align: center;}
 
-body 
+body
 {
-    background-image: url(images/texture.png);
-	background-repeat: repeat;
+	width: 960px;
+	margin: 0 auto;
+	color: #665544;
+	text-align: center;}
 }
-
-form
-{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color:#FFF;
-}
-
-
-#h1
+ #div
 {
   position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   color:#FFF;
-  font-size:48px;
+  width:40%;
+} 
+
+<<<<<<< HEAD
+#header {
+    width: 100%;
+	top:50px;
+    position: relative;
+    text-align: center;
 }
 
+#header .close {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
+/* unvisited link */
+a:link {
+    color: #FFF;
+}
+
+/* visited link */
+a:visited {
+    color: #FFF;
+=======
 h1
+{
+	color:#FFF;
+}
+
+h2
 {
 	color:#FFF;
 }
 
 menu 
 {
+	color:#FFF;
 	width: 50%;
 	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+>>>>>>> origin/master
+}
+
+#div
+{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
 }
