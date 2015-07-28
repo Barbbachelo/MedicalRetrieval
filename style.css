@@ -20,6 +20,7 @@ body
   width:40%;
 } 
 
+<<<<<<< HEAD
 #header {
     width: 100%;
 	top:50px;
@@ -41,4 +42,31 @@ a:link {
 /* visited link */
 a:visited {
     color: #FFF;
+=======
+h1
+{
+	color:#FFF;
+}
+
+h2
+{
+	color:#FFF;
+}
+
+menu 
+{
+	color:#FFF;
+	width: 50%;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+>>>>>>> origin/master
+}
+
+#div
+{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
 }

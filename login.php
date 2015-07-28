@@ -1,11 +1,17 @@
 <HTML XMLns="http://www.w3.org/1999/xHTML"> 
   <head> 
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="forms.css">
     <link rel="stylesheet" type="text/css" href="loginStyle.css">
+=======
+ 	<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="forms.css">
+>>>>>>> origin/master
     <title>Login</title> 
   </head> 
   <body>
   <div align="center">
+<<<<<<< HEAD
     <form> 
       <fieldset>
           <legend>Login</legend>
@@ -14,6 +20,25 @@
           <input type="submit" value="Login" name="submit" id="submit"/>
       </fieldset>
   </form>
+=======
+    <div id="div">
+			<form>
+              <ul class="form-style-1">
+                    <li>
+                        <label>Login<span class="required">*</span></label>
+                      <input type="text" name="user" class="field-long" />
+                    </li>
+                                        <li>
+                        <label>Password<span class="required">*</span></label>
+                      <input type="password" name="password" class="field-long" />
+                    </li>
+                     <li>
+                         <input type="submit" value="Login" name="submit" />
+                    </li>
+              </ul>
+          </form>
+          </div>
+>>>>>>> origin/master
   </div>
   </body> 
 </html>

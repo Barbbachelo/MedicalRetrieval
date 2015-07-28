@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body
 {		
 	font-family: Arial, Verdana, sans-serif;
@@ -15,10 +16,25 @@ homebutton
 	position:fixed;
 	top:20px;
 	left:0px;
+=======
+
+body 
+{
+    background-image: url(images/texture.png);
+	background-repeat: repeat;
+}
+
+h1
+{
+	font:"Lucida Sans Unicode", "Lucida Grande", sans-serif
+	color:#FFF;
+	text-align:center;
+>>>>>>> origin/master
 }
 
 form
 {
+<<<<<<< HEAD
 	color:#000000;
 }
 div
@@ -27,6 +43,19 @@ div
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+=======
+	color:#FFF
+}
+
+div
+{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
+>>>>>>> origin/master
 }
 
 #header {
@@ -40,6 +69,7 @@ div
     position: absolute;
     top: 20px;
     right: 0px;
+<<<<<<< HEAD
 }
 
 #header .menu {
@@ -56,4 +86,6 @@ a:link {
 /* visited link */
 a:visited {
     color: #000000;
+=======
+>>>>>>> origin/master
 }

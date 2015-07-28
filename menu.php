@@ -5,6 +5,7 @@
     <title>Main Menu</title> 
  </head>
  <html>
+<<<<<<< HEAD
 <body>
 		<div id="header">
 			<h1>Main Menu</h1>
@@ -28,3 +29,13 @@
 		</div>
 	</body>
 </html>
+=======
+ 	<body>
+   	<div id="menu" align="center">
+   	  <h1>Main Menu</h1>
+      <h2><a href="addPatient.php">Add Patient</a></h2>
+      <h2><a href="viewData.php">View Data</a></h2>
+   	</div>
+</body>
+ </html>
+>>>>>>> origin/master
