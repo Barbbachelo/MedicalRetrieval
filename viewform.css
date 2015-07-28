@@ -1,12 +1,12 @@
 
-input 
+input[type="text"]
 {
 	border-bottom: 1px dotted #dcdcdc;
 	border-top: none;
 	border-right: none;
 	border-left: none;
 	padding: 5px;
-	width: 280px;
+	width: 100%;
 	margin-bottom: 20px;
 }
 
@@ -17,7 +17,7 @@ textarea
 	border-right: none;
 	border-left: none;
 	padding: 5px;
-	width: 280px;
+	width: 100%;
 	margin-bottom: 20px;
 }
 input:focus 
@@ -25,18 +25,11 @@ input:focus
 	border: 1px dotted #dcdcdc;
 	outline: none;
 }
-input#submit
-{
-	color: #000000;
-	background-color: #3399FF;
-	border: none;
-	border-radius: 5px;
-	width: 80px;
-}
 
-input#edit
+input#submit 
 {
-	color: #000000;
+	padding: 5px;
+	color: #ffffff;
 	background-color: #3399FF;
 	border: none;
 	border-radius: 5px;
@@ -44,28 +37,47 @@ input#edit
 }
 input#submit:hover 
 {
-	color: #000000;
-	background-color: #C7C7C7;
+	color: #665544;
+	background-color: #efefef;
 }
 
-input#edit:hover 
+input#button 
 {
-	color: #000000;
-	background-color: #C7C7C7;
+	padding: 5px;
+	color: #ffffff;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 80px;
+}
+input#button:hover 
+{
+	color: #665544;
+	background-color: #efefef;
 }
 fieldset 
 {
 	width: 300px;
-	border: 1px solid #939393;
+	border: 1px solid #dcdcdc;
 	border-radius: 10px;
 	padding: 20px;
 	text-align: left;
 }
+
+RadioField
+{
+	display:inline;
+}
 legend 
 {
 	background-color: #efefef;
-	border: 1px solid #939393;
+	border: 1px solid #dcdcdc;
 	border-radius: 10px;
 	padding: 10px 20px;
 	text-align: left;
+}
+
+RadioLegend 
+{
+	
 }

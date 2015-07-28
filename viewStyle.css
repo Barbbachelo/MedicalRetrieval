@@ -24,9 +24,10 @@ form
 div
 {
   position: fixed;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height:auto;
 }
 
 #header {
@@ -56,4 +57,17 @@ a:link {
 /* visited link */
 a:visited {
     color: #000000;
+}
+table{
+border-collapse:collapse;
+}
+
+table, td, th {
+	margin-top:15%;
+	margin-left:auto; 
+    margin-right:auto;
+	text-align:center;
+	color:#000000;
+	padding: 5px;
+	border: 1px solid black;
 }

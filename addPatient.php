@@ -1,89 +1,138 @@
-<HTML>
+<?php
+// Start the session
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+?>
+<HTML XMLns="http://www.w3.org/1999/xHTML"> 
+<head> 
+ 	<link rel="stylesheet" type="text/css" href="forms.css">
+    <link rel="stylesheet" type="text/css" href="addStyle.css">
+    <script src="script.js"></script>
+    <title>Add Patient</title> 
+ </head>
+ <html>
+ 	<body>
+        <div id="header"> 
+			<a href="login.php" class="close">Log Out</a>
+        </div>
+		 <div id="header"> 
+			<a href="menu.php"class="menu">Main Menu</a>
+        </div>
+</body>
+</html>
 
-	<head>
-		<title> Add new patient </title>
-	</head>
+<?php
+if (!empty($_SESSION))
+{
+  $fName = $_SESSION["fName"];
+  $lName = $_SESSION["lName"];
+  $Gender = $_SESSION["Gender"];
+  $pCode = $_SESSION["pCode"];
+  $DOB = $_SESSION["DOB"];
+  $CID = $_SESSION["CID"];
+  $ICD = $_SESSION["ICD"];
+  $Comments = $_SESSION["Comments"];
+  $Null = "NULL";
+  
+  echo			"<div id=\"div\">";
+  echo				"<form> ";
+  echo				"<fieldset>";
+  echo					"<legend>New Patient</legend>";
+  echo					"<label for=\"fname\">First Name: </label><input type=\"text\" value=\"" . $fName . "\"name=\"fname\" />";
+  echo					"<label for=\"lname\">Last Name: </label><input type=\"text\" value=\"" . $lName . "\"name=\"lname\" />";
+  echo					"<label for=\"gender\">Gender: </label><input type=\"text\" value=\"" . $Gender . "\"name=\"gender\" />";
+  echo					"<label for=\"cid\">Child ID: </label><input type=\"text\" maxlength=\"5\" placeholder=\"Unique 5 didgit ID\" value=\"" . $CID . "\"name=\"cid\" />";
+  echo					"<label for=\"pCode\">Post Code: </label><input type=\"text\" placeholder=\"DD/MM/YYYY\" value=\"" . $pCode . "\"name=\"pCode\" />";
+  echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" value=\"" . $DOB . "\"name=\"dob\" />";
+  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a space\" value=\"" . $ICD . "\"name=\"icd\" />"; 
+  echo					"<label for=\"comments\">Comments</label></br>";
+  echo					"<textarea name=\"comments\" class=\"field-textarea\" rows=\"3\" laceholder=\"Enter patient comments...\">" . $Comments . "\"</textarea></br>";
+  echo					"<input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\"/>";
+  echo					"<label id=\"status\"></label>";
+  echo				"</fieldset>";
+  echo			  "</form>";
+  echo		  "</div>	";
+  session_unset();
+}
+else
+{
+  echo			"<div id=\"div\">";
+  echo				"<form> ";
+  echo				"<fieldset>";
+  echo					"<legend>New Patient</legend>";
+  echo					"<label for=\"fname\">First Name: </label><input type=\"text\" name=\"fname\" />";
+  echo					"<label for=\"lname\">Last Name: </label><input type=\"text\" name=\"lname\" />";
+  echo					"<label for=\"gender\">Gender: </label><input type=\"text\" name=\"gender\" />";
+  echo					"<label for=\"cid\">Child ID: </label><input type=\"text\" maxlength=\"5\" placeholder=\"Unique 5 didgit ID\" name=\"cid\" />";
+  echo					"<label for=\"pCode\">Post Code: </label><input type=\"text\" name=\"pCode\" />";
+  echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" placeholder=\"DD/MM/YYYY\" name=\"dob\" />";
+  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a space\" name=\"icd\" />"; 
+  echo					"<label for=\"comments\">Comments</label></br>";
+  echo					"<textarea name=\"comments\" class=\"field-textarea\" rows=\"3\" placeholder=\"Enter patient comments...\"></textarea></br>";
+  echo					"<input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\"/>";
+  echo					"<label id=\"status\"></label>";
+  echo				"</fieldset>";
+  echo			  "</form>";
+  echo		  "</div>	";
+}
 
-	<body>
-		<style>
-			table, th, td{
-			border: 1px solid black;
-			}
-			
-		</style>
-	
-		<br> <br> <h1> <center> Add new patient <center> </h1> </br> </br>
-		<center>
-		<form>
-		<!--	
-			textbox for input date
-			radio button for request date or pickup date
-		-->
-			<table width ="30%">
-			
-				<tr> <td height="50" align="center">Child ID: </td> <td height="50" align="center"> <input type="text" name="cid" style="border: 1px solid black;"> </td></tr>
-				<tr> <td height="50" align="center"> First Name: </td> <td height="50" align="center"> <input type="text" name="fname" style="border: 1px solid black;"></td></tr>
-				<tr> <td height="50" align="center"> Last Name: </td> <td height="50" align="center"> <input type="text" name="lname" style="border: 1px solid black;"></td></tr>
-				<tr> <td height="50" align="center"> Date of Birth: </td> <td height="50" align="center"> <input type="text" name="dob" style="border: 1px solid black;"></td></tr>
-				<tr> <td height="50" align="center"> Postcode: </td> <td height="50" align="center"> <input type="text" name="pcode" style="border: 1px solid black;"></td></tr>
-				<tr> <td height = "50" align="center"> Gender: </td> <td height="50" align="center"> <select name ="gender" style="border: 1px solid black;"><option value="Male">Male</option> <option value="Female">Female</option> </select> </td> </tr>
-				<tr> <td height ="50" align="center"> <input type="submit" value="Add" style="width: 100px; height: 30px" onclick="confirmFunction()" > </td> <td height ="50" align="center"> <input type="reset" value="Reset" style="width: 100px; height: 30px" > </td> </tr>
-			</table>
-			
-			
-			
-		</form>
-		</center>
-		<script>
-			function confirmFunction() {
-				var cid = document.getElementsByName("cid")[0].value;
-				var fname = document.getElementsByName("fname")[0].value;
-				var lname = document.getElementsByName("lname")[0].value;
-				var dob = document.getElementsByName("dob")[0].value;
-				var pcode = document.getElementsByName("pcode")[0].value;
-				var gender = document.getElementsByName("gender")[0].value;
-				
-				var x = "CONFIRMATION:" + " \n \n";
-				x += "Child ID: " + cid + "\n";
-				x += "First name: " + fname + "\n";
-				x += "Last name: " + lname + "\n";
-				x += "Date of Birth: " + dob + "\n";
-				x += "Postcode: " + pcode + "\n";
-				x += "Gender: " + gender + "\n";
-				
-				if (confirm(x) == true)
-				{
-					
-				}
-				else
-				{
-				
-				}
-				
-			//alert(x);
-			}
-		</script>
-		
-		<?php
-			
-			$user = 'root';
-			$pass = '';
-			$db = 'seproject';
-			
-			
-			$DBConnect = @mysqli_connect("localhost", $user, $pass, $db)
-				Or die ("<p>Unable to connect to the database server.</p>". "<p>Error code ". mysqli_connect_errno().": ". mysqli_connect_error()). "</p>";
-	
-			if (isset($_GET['cid']) && isset($_GET['fname']) && isset($_GET['lname']) && isset($_GET['dob']) && isset($_GET['pcode']) && isset($_GET['gender'])    )
-			{
-				$SQLstring = "insert into patient(ChildID, Firstname, Lastname, DateofBirth, Postcode, Gender) values (".$_GET['cid'].",' ".$_GET['fname']."','".$_GET['lname']."','".$_GET['dob']."',".$_GET['pcode'].",'".$_GET['gender']."' );";
-				$queryResult = @mysqli_query($DBConnect, $SQLstring)
-				 Or die ("<p>Unable to insert data into the patient table.</p>"."<p>Error code ". mysqli_errno($DBConnect). ": ".mysqli_error($DBConnect)). "</p>";
-			echo "<p>Successfully inserted data into patient table</p>";
-			}
-		
-		?>
-		
-	</body>
 
-</HTML>
+if (isset($_GET['submit']))
+ {
+  $fName = $_GET['fname'];
+  $lName = $_GET['lname'];
+  $Gender = $_GET['gender'];
+  $pCode = $_GET['pCode'];
+  $DOB = $_GET['dob'];
+  $CID = $_GET['cid'];
+  $ICD = $_GET['icd'];
+  $Comments = $_GET['comments'];
+  
+  if($fName =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter a first name'</script>";
+	  exit();
+  }
+   if($lName =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter a last name'</script>";
+	  exit();
+  }
+   if($Gender =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter a gender'</script>";
+	  exit();
+  }
+   if($pCode =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter a post code'</script>";
+	  exit();
+  }
+   if($DOB =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter a Date of Birth'</script>";
+	  exit();
+  }
+   if($CID =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter a Child ID'</script>";
+	  exit();
+  }
+   if($ICD =="")
+  {
+	  echo "<script> document.getElementById('status').innerHTML = 'Please enter at least one ICD'</script>";
+	  exit();
+  }
+  
+  $_SESSION["fName"] = $fName;
+  $_SESSION["lName"] = $lName;
+  $_SESSION["Gender"] = $Gender;
+  $_SESSION["pCode"] = $pCode;
+  $_SESSION["DOB"] = $DOB;
+  $_SESSION["CID"] = $CID;
+  $_SESSION["ICD"] = $ICD;
+  $_SESSION["Comments"] = $Comments;
+  
+  header("Location: confirmPatient.php");
+  exit;
+ }
+?>
