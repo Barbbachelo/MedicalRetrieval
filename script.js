@@ -1,6 +1,14 @@
 // JavaScript Document
-function addMouseOver() {
-    document.getElementById("add").src="images/addclicked.png"
+function showDateOfDeath() {
+   var status = document.getElementById("dead");
+   if (status.checked == true)
+   {
+	   document.getElementById("dod").style.display = block;
+   }
+   else
+   {
+	  document.getElementById("dod").style.display = none;
+   }
 }
 
 function addMouseOut() {
