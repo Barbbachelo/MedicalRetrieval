@@ -1,0 +1,44 @@
+* {
+font-family: Arial, Verdana, sans-serif;
+color: #665544;
+text-align: center;}
+
+body
+{
+	width: 960px;
+	margin: 0 auto;
+	color: #665544;
+	text-align: center;}
+}
+ #div
+{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:#FFF;
+  width:40%;
+} 
+
+#header {
+    width: 100%;
+	top:50px;
+    position: relative;
+    text-align: center;
+}
+
+#header .close {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
+/* unvisited link */
+a:link {
+    color: #FFF;
+}
+
+/* visited link */
+a:visited {
+    color: #FFF;
+}

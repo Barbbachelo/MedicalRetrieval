@@ -4,8 +4,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 ?>
 <HTML XMLns="http://www.w3.org/1999/xHTML"> 
 <head> 
- 	<link rel="stylesheet" type="text/css" href="viewStyle.css">
- 	<link rel="stylesheet" type="text/css" href="viewform.css">
+ 	<link rel="stylesheet" type="text/css" href="CSS/viewStyle.css">
+ 	<link rel="stylesheet" type="text/css" href="CSS/viewform.css">
     <script src="script.js"></script>
     <title>Edit Patient</title> 
  </head>
