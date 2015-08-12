@@ -1,0 +1,15 @@
+/* CSS Document */
+body
+{
+	font-family: Arial, Verdana, sans-serif;
+	color: #665544;
+}
+
+ div
+{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:40%;
+} 

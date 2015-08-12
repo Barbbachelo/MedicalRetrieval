@@ -3,8 +3,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 ?>
 <HTML XMLns="http://www.w3.org/1999/xHTML"> 
 <head> 
- 	<link rel="stylesheet" type="text/css" href="forms.css">
-    <link rel="stylesheet" type="text/css" href="addStyle.css">
+ 	<link rel="stylesheet" type="text/css" href="CSS/forms.css">
+    <link rel="stylesheet" type="text/css" href="CSS/addStyle.css">
     <script src="script.js"></script>
     <title>Confirm</title> 
  </head>
@@ -65,7 +65,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 		 echo "<script> document.getElementById('status').innerHTML = 'Patient added successfully!'</script>";
 		 echo "<script> document.getElementById('edit').value = 'Add another patient?'</script>";
 		 echo "<script> document.getElementById('submit').style.visibility = 'hidden'</script>";
-		 session_unset();
+		 $accType = $_SESSION["accType"];	
+		 session_destroy();
+		 session_start();
+		 $_SESSION["accType"] = $accType;
 	  }
 	  else
 	  {

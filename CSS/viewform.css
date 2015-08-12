@@ -1,0 +1,98 @@
+
+input[type="text"]
+{
+	border-bottom: 1px dotted #dcdcdc;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	padding: 5px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+textarea
+{
+	border-bottom: 1px dotted #dcdcdc;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	padding: 5px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+input:focus 
+{
+	border: 1px dotted #dcdcdc;
+	outline: none;
+}
+
+input#submit 
+{
+	padding: 5px;
+	color: #ffffff;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 80px;
+}
+input#submit:hover 
+{
+	color: #665544;
+	background-color: #efefef;
+}
+
+input#add 
+{
+	padding: 5px;
+	color: #ffffff;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 80px;
+}
+input#add:hover 
+{
+	color: #665544;
+	background-color: #efefef;
+}
+
+input#button 
+{
+	padding: 5px;
+	color: #ffffff;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 80px;
+}
+input#button:hover 
+{
+	color: #665544;
+	background-color: #efefef;
+}
+fieldset 
+{
+	width: 300px;
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	padding: 20px;
+	text-align: left;
+}
+
+RadioField
+{
+	display:inline;
+}
+legend 
+{
+	background-color: #efefef;
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	padding: 10px 20px;
+	text-align: left;
+}
+
+RadioLegend 
+{
+	
+}
