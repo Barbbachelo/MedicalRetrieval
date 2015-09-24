@@ -44,7 +44,8 @@ if (isset($_GET['submit']))
 	{
 		$pCode = $_GET['pCode'];
 	}
-	include("getData.php");
+	include("ICDvspCode.php");
+	ICDvspCodeBar($pCode);
 	echo "<img src=\"chart.png\"></img>";
  }
 ?>

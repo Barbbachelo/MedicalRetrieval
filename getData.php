@@ -26,6 +26,7 @@
 	$MyData->setSerieDescription("ICD", "ICD");
 	$MyData->setAbscissa("ICD");
 	$MyData->setAbscissaName("ICD");
+	$MyData->loadPalette("pChart/palettes/blind.color", TRUE);
 	
 	/* Create the cache object */
 

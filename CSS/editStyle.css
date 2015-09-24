@@ -44,3 +44,21 @@ a:link {
 a:visited {
     color: #000000;
 }
+.button
+{
+	padding: 5px;
+	color: #ffffff;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 80px;
+	float:left;
+}
+
+.button:hover
+{
+	color: #FFFFFF;
+	background-color: #C7C7C7;
+}
+
+

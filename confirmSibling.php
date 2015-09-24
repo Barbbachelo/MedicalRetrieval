@@ -29,9 +29,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   $CID = $_SESSION["CID"];
   $ICD = $_SESSION["ICD"];
   $Comments = $_SESSION["Comments"];
-  $siblingID = $_SESSION["SiblingID"]; 
   $Null = "NULL";
   
+  echo  $_SESSION["accType"];
   
   echo		"<div id=\"div\">";
   echo				"<form>";
@@ -47,8 +47,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   echo					"<label for=\"comments\">Comments: </label></br>";
   echo                  "<label>" . $Comments . "</label> </br>";
   echo					"<input type=\"submit\" value=\"Edit\" name=\"edit\" id=\"edit\"/>";
+  echo					"<input type=\"submit\" value=\"Menu\" name=\"menu\" id=\"menu\"/>";
   echo					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-  echo					"<input type=\"submit\" value=\"Confirm\" name=\"submit\" id=\"submit\"/></br>";
+  echo					"<input type=\"submit\" value=\"Confirm\" name=\"submit\" id=\"submit\"/></br></br></br>";
   echo					"<label id=\"status\"></label>";
   echo				"</fieldset>";
   echo			  "</form>";
@@ -59,22 +60,35 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 	  $dobReversed = strrev($DOB);
 		
 	  $connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-	  $SQLstring = "INSERT INTO patients(FName, LName, Gender, DOB, PostCode, CID, siblingID, ICD, Status, DateOfDeath, Comments, Extra) VALUES ('$fName', '$lName', '$Gender', 									      '$dobReversed','$pCode', '$CID', ' $siblingID' , '$ICD', 'Alive', '$Null', '$Comments', '$Null');";
+	  $SQLstring = "INSERT INTO patients(FName, LName, Gender, DOB, PostCode, CID, siblingID, ICD, Status, DateOfDeath, Comments, Extra) VALUES ('$fName', '$lName', '$Gender', 									      '$dobReversed','$pCode', '$CID', ' $Null' , '$ICD', '$Null', '$Null', '$Comments', '$Null');";
 	  $result = mysqli_query($connection, $SQLstring);
 	  
 	  if($result)
 	  {
 		 echo "<script> document.getElementById('status').innerHTML = 'Patient added successfully!'</script>";
+		 echo "<script> document.getElementById('edit').value = 'Add another patient?'</script>";
 		 echo "<script> document.getElementById('submit').style.visibility = 'hidden'</script>";
+		 echo "<script> document.getElementById('menu').style.visibility = 'visible'</script>";
 		 $accType = $_SESSION["accType"];	
-		 session_destroy();
-		 session_start();
+		 session_unset();
 		 $_SESSION["accType"] = $accType;
+	  }
+	  else
+	  {
+		  echo "<script> document.getElementById('status').innerHTML = 'Error: Duplicate Child ID'</script>";
 	  }
 	}
   if (isset($_GET['edit']))
   {
 	header("Location: addSibling.php");
+  	exit;  
+  }
+    if (isset($_GET['menu']))
+  {
+   $accType = $_SESSION["accType"];	
+   session_unset();
+   $_SESSION["accType"] = $accType;
+	header("Location: menu.php");
   	exit;  
   }
 ?>

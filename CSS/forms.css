@@ -19,6 +19,7 @@ textarea
 	padding: 5px;
 	width: 280px;
 	margin-bottom: 20px;
+	resize:vertical;
 }
 input:focus 
 {
@@ -27,7 +28,8 @@ input:focus
 }
 input#submit
 {
-	color: #000000;
+	float:right;
+	color: #FFFFFF;
 	background-color: #3399FF;
 	border: none;
 	border-radius: 5px;
@@ -36,37 +38,67 @@ input#submit
 
 input#editAnother
 {
-	color: #000000;
+	color: #FFFFFF;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 90px;
+	float:left;
+}
+
+input#menu
+{
+	color: #FFFFFF;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 90px;
+	float:right;
+	visibility:hidden;
+}
+
+input#menu:hover 
+{
+	color: #FFFFFF;
+	background-color: #C7C7C7;
+}
+
+.button
+{
+	float:left;
+	color: #FFFFFF;
 	background-color: #3399FF;
 	border: none;
 	border-radius: 5px;
 	width: 80px;
 }
 
-input#edit
+.button:hover
 {
-	color: #000000;
-	background-color: #3399FF;
-	border: none;
-	border-radius: 5px;
-	width: 80px;
+	color: #FFFFFF;
+	background-color: #C7C7C7;
 }
+
 
 input#submit:hover 
 {
-	color: #000000;
+	color: #FFFFFF;
 	background-color: #C7C7C7;
+}
+
+input#edit 
+{
+	color: #FFFFFF;
+	background-color: #3399FF;
+	border: none;
+	border-radius: 5px;
+	width: 80px;
+	float:left;
 }
 
 input#edit:hover 
 {
-	color: #000000;
-	background-color: #C7C7C7;
-}
-
-input#editAnother:hover 
-{
-	color: #000000;
+	color: #FFFFFF;
 	background-color: #C7C7C7;
 }
 fieldset 
