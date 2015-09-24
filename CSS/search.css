@@ -1,0 +1,12 @@
+table, th, td{
+border: 1px solid black;
+}
+
+input.disabled {
+	pointer-events:none;
+	color:#AAA;
+	background:#F5F5F5;
+}
+input.enabled {
+	border: 1px solid black;/* CSS Document */
+

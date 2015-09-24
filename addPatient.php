@@ -17,6 +17,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 		 <div id="header"> 
 			<a href="menu.php"class="menu">Main Menu</a>
         </div>
+        
 </body>
 </html>
 
@@ -37,21 +38,34 @@ if (!empty($_SESSION) and isset($_SESSION["fName"]))
   echo			"<div id=\"div\">";
   echo				"<form> ";
   echo				"<fieldset>";
-  echo					"<legend>New Patient</legend>";
+  echo					"<legend>New Patient: Personal Information</legend>";
   echo					"<label for=\"fname\">First Name: </label><input type=\"text\" value=\"" . $fName . "\"name=\"fname\" />";
   echo					"<label for=\"lname\">Last Name: </label><input type=\"text\" value=\"" . $lName . "\"name=\"lname\" />";
   echo					"<label for=\"gender\">Gender: </label><input type=\"text\" value=\"" . $Gender . "\"name=\"gender\" />";
-  echo					"<label for=\"cid\">Child ID: </label><input type=\"text\" maxlength=\"10\" placeholder=\"Unique 5 didgit ID\" value=\"" . $CID . "\"name=\"cid\" />";
   echo					"<label for=\"pCode\">Post Code: </label><input type=\"text\" placeholder=\"DD/MM/YYYY\" value=\"" . $pCode . "\"name=\"pCode\" />";
   echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" value=\"" . $DOB . "\"name=\"dob\" />";
-  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a space\" value=\"" . $ICD . "\"name=\"icd\" />"; 
-  echo					"<label for=\"comments\">Comments</label></br>";
-  echo					"<textarea name=\"comments\" class=\"field-textarea\" rows=\"3\" laceholder=\"Enter patient comments...\">" . $Comments . "\</textarea></br>";
-  echo					"<input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\"/>";
+  echo					"<input type=\"button\" value=\"Next\" class=\"button\" name=\"next\" onclick=\"formNext()\" >";
+  echo					"<label id=\"status\"></label>";
   echo					"<label id=\"status\"></label>";
   echo				"</fieldset>";
-  echo			  "</form>";
-  echo		  "</div>	";
+  echo		  "</div>";
+  
+  echo 		"<div id=\"div2\" style=\"visibility:hidden;\" >";
+  echo			  "<fieldset>";
+  echo				  "<legend>New Patient: Medical Information</legend>";
+  echo				  "<label for='cid'>Child ID: </label><input type='text' maxlength='5' placeholder='Unique 5 didgit ID' name='cid' value=\"" . $CID . "\">";
+  echo				  "<label for='icd'>ICD: </label><input type='text' placeholder='Seperate each ICD with a space' name='icd' value=\"" . $ICD . "\"/>";
+  echo				  "<label for='comments'>Comments</label></br>";
+  echo				  "<textarea name='comments' class='field-textarea' rows='3' value=\"" . $Comments . "\ placeholder=\"Enter patient comments...\"></textarea></br>";
+  echo				  "<input type=\"button\" value=\"Back\" class=\"button\" name=\"next\" onclick=\"formBack()\" >";
+  echo				  "<input type='submit' value='Submit' name='submit' id='submit'/> </br>";
+  echo				  "<label id='status'></label>";
+  echo			  "</fieldset>";
+  echo			"</form>";
+  echo			"</div>";
+  
+
+  
   session_unset();
 }
 else
@@ -59,21 +73,33 @@ else
   echo			"<div id=\"div\">";
   echo				"<form> ";
   echo				"<fieldset>";
-  echo					"<legend>New Patient</legend>";
+  echo					"<legend>New Patient: Personal Information</legend>";
   echo					"<label for=\"fname\">First Name: </label><input type=\"text\" name=\"fname\" />";
   echo					"<label for=\"lname\">Last Name: </label><input type=\"text\" name=\"lname\" />";
   echo					"<label for=\"gender\">Gender: </label><input type=\"text\" name=\"gender\" />";
-  echo					"<label for=\"cid\">Child ID: </label><input type=\"text\" maxlength=\"5\" placeholder=\"Unique 5 didgit ID\" name=\"cid\" />";
   echo					"<label for=\"pCode\">Post Code: </label><input type=\"text\" name=\"pCode\" />";
   echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" placeholder=\"DD/MM/YYYY\" name=\"dob\" />";
-  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a space\" name=\"icd\" />"; 
-  echo					"<label for=\"comments\">Comments</label></br>";
-  echo					"<textarea name=\"comments\" class=\"field-textarea\" rows=\"3\" placeholder=\"Enter patient comments...\"></textarea></br>";
-  echo					"<input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\"/>";
+  echo					"<input type=\"button\" value=\"Next\" class=\"button\" name=\"next\" onclick=\"formNext()\" >";
   echo					"<label id=\"status\"></label>";
   echo				"</fieldset>";
-  echo			  "</form>";
   echo		  "</div>	";
+  
+    
+  echo 		"<div id=\"div2\" style=\"visibility:hidden;\" >";
+  echo			  "<fieldset>";
+  echo				  "<legend>New Patient: Medical Information</legend>";
+  echo				  "<label for='cid'>Child ID: </label><input type='text' maxlength='5' placeholder='Unique 5 didgit ID' name='cid' />";
+  echo				  "<label for='icd'>ICD: </label><input type='text' placeholder='Seperate each ICD with a space' name='icd' />";
+  echo				  "<label for='comments'>Comments</label></br>";
+  echo				  "<textarea name='comments' class='field-textarea' rows='3' placeholder=\"Enter patient comments...\"></textarea></br>";
+  echo				  "<input type=\"button\" value=\"Back\" class=\"button\" name=\"next\" onclick=\"formBack()\" >";
+  echo				  "<input type='submit' value='Submit' name='submit' id='submit'/> </br>";
+  echo				  "<label id='status'></label>";
+  echo			  "</fieldset>";
+  echo			"</form>";
+  echo			"</div>";
+
+
 }
 
 

@@ -63,28 +63,39 @@ if (!empty($_SESSION))
 		$siblingID = "H";
 	}
 	
-	$CID = $CID . $siblingID;
+	$newCID = $CID . $siblingID;
 	
 
   echo			"<div id=\"div\">";
   echo				"<form> ";
   echo				"<fieldset>";
-  echo					"<legend>New Patient</legend>";
+  echo					"<legend>New Patient: Personal Information</legend>";
   echo					"<label for=\"fname\">First Name: </label><input type=\"text\" name=\"fname\" />";
   echo					"<label for=\"lname\">Last Name: </label><input type=\"text\" name=\"lname\" />";
   echo					"<label for=\"gender\">Gender: </label><input type=\"text\" name=\"gender\" />";
-  echo					"<label for=\"cid\">Child ID: </label><label>" . $CID . "<label> </br> </br>";
   echo					"<label for=\"pCode\">Post Code: </label><input type=\"text\" name=\"pCode\" />";
   echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" placeholder=\"DD/MM/YYYY\" name=\"dob\" />";
-  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a space\" name=\"icd\" />"; 
-  echo					"<label for=\"comments\">Comments</label></br>";
-  echo					"<textarea name=\"comments\" class=\"field-textarea\" rows=\"3\" placeholder=\"Enter patient comments...\"></textarea></br>";
-  echo					"<input type=\"submit\" value=\"Submit\" name=\"submit\" id=\"submit\"/>";
+  echo					"<input type=\"button\" value=\"Next\" class=\"button\" name=\"next\" onclick=\"formNext()\" >";
   echo					"<label id=\"status\"></label>";
   echo				"</fieldset>";
-  echo			  "</form>";
   echo		  "</div>	";
+  
+    
+  echo 		"<div id=\"div2\" style=\"visibility:hidden;\" >";
+  echo			  "<fieldset>";
+  echo				  "<legend>New Patient: Medical Information</legend>";
+  echo				  "<label for=\"cid\">Child ID: </label><label>" . $newCID . "<label> </br> </br>";
+  echo				  "<label for='icd'>ICD: </label><input type='text' placeholder='Seperate each ICD with a space' name='icd' />";
+  echo				  "<label for='comments'>Comments</label></br>";
+  echo				  "<textarea name='comments' class='field-textarea' rows='3' placeholder=\"Enter patient comments...\"></textarea></br>";
+  echo				  "<input type=\"button\" value=\"Back\" class=\"button\" name=\"next\" onclick=\"formBack()\" >";
+  echo				  "<input type='submit' value='Submit' name='submit' id='submit'/> </br>";
+  echo				  "<label id='status'></label>";
+  echo			  "</fieldset>";
+  echo			"</form>";
+  echo			"</div>";
   session_unset();
+  $_SESSION["CID"] = $newCID;
 }
 
 if (isset($_GET['submit']))
@@ -138,7 +149,7 @@ if (isset($_GET['submit']))
   $_SESSION["ICD"] = $ICD;
   $_SESSION["Comments"] = $Comments;
   
-  header("Location: confirmPatient.php");
+  header("Location: confirmSibling.php");
   exit;
  }
 ?>

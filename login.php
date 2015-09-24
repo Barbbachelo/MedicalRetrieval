@@ -14,7 +14,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
       <fieldset>
           <legend>Login</legend>
           <label for="user">Username: </label><input type="text" name="user" />
-          <label for="password">Password </label><input type="text" name="password" />
+          <label for="password">Password </label><input type="password" name="password" />
           <input type="submit" value="Login" name="submit" id="submit"/>
       </fieldset>
   </form>

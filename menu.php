@@ -59,7 +59,7 @@ echo		"</body>";
 echo	"</html>";	
 }
 
-else
+elseif ($_SESSION["accType"] == "user")
 {
 echo 	"<html>";
 echo		"<body>";
@@ -82,5 +82,9 @@ echo				"</div>";
 echo			"</div>";
 echo		"</body>";
 echo	"</html>";		
+}
+else
+{
+	echo "whoops! You shouldnt be here";
 }
 ?>
