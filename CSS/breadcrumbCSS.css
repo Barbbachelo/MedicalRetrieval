@@ -1,0 +1,28 @@
+#crumbs {
+	position: absolute;
+	width: 30%;
+	top: 8%;
+	text-align: left;
+	font: 71%/165% "Lucida Grande", Lucida, Verdana, sans-serif;
+	float: left;
+	line-height: 2.0em;
+	color: #777;
+	padding-left: .75em;
+	display: block;
+	margin-left: 0px;
+	left: 0%;
+	}		
+	
+#crumbs a {
+	padding:5px 15px 5px 5px;
+	background:url(images/crumbs.gif) no-repeat right center;
+	}				
+#crumbs a:link, #crumbs a:visited {
+	
+	color:#777;
+	text-decoration:none;
+	}	
+a:link, a:visited, #crumbs a:hover, #crumbs  a:focus {
+	color:#3366FF;
+	text-decoration:underline;
+	}	

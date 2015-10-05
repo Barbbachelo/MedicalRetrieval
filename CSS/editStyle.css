@@ -3,12 +3,22 @@ body
 	font-family: Arial, Verdana, sans-serif;
 	color: #665544;
 }
-div
+
+
+personInfo1
 {
-    position: absolute;
-	width:50%;
-	top:1%;
-    left: 40%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+personInfo2
+{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 form
@@ -24,16 +34,15 @@ form
 }
 
 #header .close {
-    position: fixed;
-    top: 20px;
-    right: 0px;
+	background: url(images/crumbs.gif) no-repeat right center;
+	padding: 5px 15px 5px 5px;
+	position: fixed;
+	top: 8%;
+	right: 0%;
+	font: 71%/165% "Lucida Grande", Lucida, Verdana, sans-serif;
+	text-decoration: none;
 }
 
-#header .menu {
-    position: fixed;
-    top: 20px;
-    left: 0px;
-}
 
 /* unvisited link */
 a:link {

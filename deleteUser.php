@@ -6,7 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   <head> 
     <link rel="stylesheet" type="text/css" href="CSS/forms.css">
     <link rel="stylesheet" type="text/css" href="CSS/loginStyle.css">
-    <title>Login</title> 
+    <title>Delete User</title> 
   </head> 
   <body>
   <div align="center">
@@ -14,8 +14,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
       <fieldset>
           <legend>Delete User</legend>
           <label for="user">Username: </label><input type="text" name="user" />
-          <input type="submit" value="Delete User" name="submit" id="submit"/>
-		  <input type="hidden" id="temp" name="temp">
+		  <label for "password">Please re-enter the admin password:</label><input type="password" id="password" name="password"/>
+		  <input type="submit" value="Delete User" name="submit" id="submit"/>
 		  <label id="status"  name="status"></label>
       </fieldset>
   </form>
@@ -30,16 +30,16 @@ if (isset($_GET['submit']))
 	{
 		$user = $_GET['user'];
 	}
-	
-	echo "<script> document.getElementById('temp').innerHTML = prompt(\"Please enter the administrator password to confirm user deletion\", \"\") </script>";
+	if(isset($_GET['password']))
+	{
+		$password = $_GET['password'];
+	}
 	
 	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-	$addUserString = "Select Password from users where User = 'admin'";
-	$result = mysqli_query($connection, $addUserString);
-	print_r ($_GET['temp']);
-	while($row = mysqli_fetch_array($result))
-	{
-		if ($row[0] != $_GET['temp'])
+	$checkAdminPW = "Select Password from users where User = 'admin'";
+	$result = mysqli_query($connection, $checkAdminPW); 
+	$row = mysqli_fetch_row($result);
+		if ($row[0] != $password)
 		{
 			echo "<script> document.getElementById('status').innerHTML = 'Password Incorrect!'</script>";
 		}
@@ -47,11 +47,9 @@ if (isset($_GET['submit']))
 		{
 			//SQL Queries
 	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-	$addUserString = "Delete from users where User = '$user'";
-	$result = mysqli_query($connection, $addUserString);
+	$deleteUserString = "Delete from users where User = '$user'";
+	$result = mysqli_query($connection, $deleteUserString);
 	
-
-	  
 	  if($result)
 	  {
 		 echo "<script> document.getElementById('status').innerHTML = 'User deleted successfully!'</script>";
@@ -62,6 +60,5 @@ if (isset($_GET['submit']))
 	  }
 	mysqli_close($connection);
 		}
-	}
 }
  ?>

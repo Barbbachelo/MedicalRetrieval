@@ -22,10 +22,10 @@ echo				"<div id=\"menuItem\">";
 echo					"<a href=\"addPatient.php\"class=\"menu\">Add Patient</a>";
 echo				"</div>";
 echo				"<div id=\"menuItem\">";
-echo					"<a href=\"viewData.php\"class\"menu\">View Data</a>";
+echo					"<a href=\"searching.php\"class\"menu\">Search/Edit Patients</a>";
 echo				"</div>";
 echo				"<div id=\"menuItem\">";
-echo					"<a href=\"editSearch.php\"class=\"menu\">Edit Patient</a>";
+echo					"<a href=\"viewData.php\"class=\"menu\">Graphs</a>";
 echo				"</div>";
 echo				"<div id=\"menuItem\">";
 echo					"<a href=\"help.php\"class=\"menu\">Help</a>";
@@ -47,7 +47,11 @@ echo				"<h1>Main Menu</h1>";
 echo			"</div>";
 echo			"<div id=\"content\">";
 echo				"<div id=\"menuItem\">";
-echo					"<a href=\"settings.php\"class=\"menu\">Settings</a>";
+echo					"<a href=\"addUser.php\"class=\"menu\">Add User</a>";
+echo				"</div>";
+echo				"<div id=\"menuItem\">";
+echo					"<a href=\"deleteUser.php\"class=\"menu\">Delete User</a>";	
+echo				"</div>";		
 echo				"<div id=\"menuItem\">";
 echo					"<a href=\"help.php\"class=\"menu\">Help</a>";
 echo				"</div>";
@@ -82,9 +86,5 @@ echo				"</div>";
 echo			"</div>";
 echo		"</body>";
 echo	"</html>";		
-}
-else
-{
-	echo "whoops! You shouldnt be here";
 }
 ?>

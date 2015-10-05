@@ -6,6 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 <head> 
  	<link rel="stylesheet" type="text/css" href="CSS/forms.css">
     <link rel="stylesheet" type="text/css" href="CSS/addStyle.css">
+    <link rel="stylesheet" type="text/css" href="CSS/breadcrumbCSS.css">
     <script src="script.js"></script>
     <title>Add Sibling</title> 
  </head>
@@ -14,8 +15,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
         <div id="header"> 
 			<a href="login.php" class="close">Log Out</a>
         </div>
-		 <div id="header"> 
-			<a href="menu.php"class="menu">Main Menu</a>
+		 <div id="crumbs"> 
+            <?php include 'breadcrumb.php' ?>
         </div>
 </body>
 </html>
@@ -30,11 +31,7 @@ if (!empty($_SESSION))
 	$row = mysqli_fetch_row($search);
 	$siblingID = $row[0];
 	
-	if ($siblingID == "")
-	{
-		$siblingID = "A";
-	}
-	elseif ($siblingID == "A")
+	if ($siblingID == "" || "NULL")
 	{
 		$siblingID = "B";
 	}
@@ -62,30 +59,31 @@ if (!empty($_SESSION))
 	{
 		$siblingID = "H";
 	}
+
 	
 	$newCID = $CID . $siblingID;
 	
 
-  echo			"<div id=\"div\">";
+  echo			"<div id=\"personInfo1\">";
   echo				"<form> ";
   echo				"<fieldset>";
   echo					"<legend>New Patient: Personal Information</legend>";
   echo					"<label for=\"fname\">First Name: </label><input type=\"text\" name=\"fname\" />";
   echo					"<label for=\"lname\">Last Name: </label><input type=\"text\" name=\"lname\" />";
-  echo					"<label for=\"gender\">Gender: </label><input type=\"text\" name=\"gender\" />";
+  echo					"<label for=\"gender\">Gender: </label><input type=\"text\" placeholder=\"M or F\" name=\"gender\" />";
   echo					"<label for=\"pCode\">Post Code: </label><input type=\"text\" name=\"pCode\" />";
-  echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" placeholder=\"DD/MM/YYYY\" name=\"dob\" />";
+  echo					"<label for=\"dob\">D.O.B: </label><input type=\"text\" placeholder=\"YYYY-MM-DD\" name=\"dob\" />";
   echo					"<input type=\"button\" value=\"Next\" class=\"button\" name=\"next\" onclick=\"formNext()\" >";
   echo					"<label id=\"status\"></label>";
   echo				"</fieldset>";
   echo		  "</div>	";
   
     
-  echo 		"<div id=\"div2\" style=\"visibility:hidden;\" >";
+  echo 		"<div id=\"personInfo2\" style=\"visibility:hidden;\" >";
   echo			  "<fieldset>";
   echo				  "<legend>New Patient: Medical Information</legend>";
   echo				  "<label for=\"cid\">Child ID: </label><label>" . $newCID . "<label> </br> </br>";
-  echo				  "<label for='icd'>ICD: </label><input type='text' placeholder='Seperate each ICD with a space' name='icd' />";
+  echo				  "<label for='icd'>ICD: </label><input type='text' placeholder='Seperate each ICD with a vertical slash (|)' name='icd' />";
   echo				  "<label for='comments'>Comments</label></br>";
   echo				  "<textarea name='comments' class='field-textarea' rows='3' placeholder=\"Enter patient comments...\"></textarea></br>";
   echo				  "<input type=\"button\" value=\"Back\" class=\"button\" name=\"next\" onclick=\"formBack()\" >";

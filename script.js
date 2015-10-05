@@ -16,14 +16,14 @@ function showDateOfDeath() {
 
 function formNext()
 {
-	document.getElementById('div').style.visibility = 'hidden';
-	document.getElementById('div2').style.visibility = 'visible';
+	document.getElementById('personInfo1').style.visibility = 'hidden';
+	document.getElementById('personInfo2').style.visibility = 'visible';
 }
 
 function formBack()
 {
-	document.getElementById('div').style.visibility = 'visible';
-	document.getElementById('div2').style.visibility = 'hidden';
+	document.getElementById('personInfo1').style.visibility = 'visible';
+	document.getElementById('personInfo2').style.visibility = 'hidden';
 
 	
 }

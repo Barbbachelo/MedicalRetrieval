@@ -29,65 +29,64 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   $CID = $_SESSION["CID"];
   $ICD = $_SESSION["ICD"];
   $Comments = $_SESSION["Comments"];
+  $Status = $_SESSION["Status"];
+  $DOD = $_SESSION["DOD"];
   $Null = "NULL";
-  
-  echo  $_SESSION["accType"];
+ 
   
   echo		"<div id=\"div\">";
   echo				"<form>";
   echo				"<fieldset>";
-  echo					"<legend>Confirm Patient</legend>";
+  echo					"<legend>Confirm Edit</legend>";
   echo					"<label for=\"fname\">First Name: ". $fName . "</label> </br>";
   echo					"<label for=\"lname\">Last Name: " . $lName . "</label> </br>";
   echo					"<label for=\"gender\">Gender: " . $Gender . "</label> </br>";
   echo					"<label for=\"cid\">Child ID: " . $CID . "</label> </br>";
-  echo					"<label for=\"pCode\">Post Code: " . $pCode . "</label> </br>";
+  echo					"<label for=\"pCode\">Post Code: " .$pCode . "</label> </br>";
   echo					"<label for=\"dob\">D.O.B: " . $DOB . "</label> </br>";
   echo					"<label for=\"icd\">ICD: " . $ICD . "</label> </br>";
+  echo					"<label for=\"Status\">Status: " . $Status . "</label> </br>";
+  echo					"<label for=\"DOD\">Date of Death: " . $DOD . "</label> </br>";
   echo					"<label for=\"comments\">Comments: </label></br>";
   echo                  "<label>" . $Comments . "</label> </br>";
-  echo					"<input type=\"submit\" value=\"Edit\" name=\"edit\" id=\"edit\"/>";
-  echo					"<input type=\"submit\" value=\"Menu\" name=\"menu\" id=\"menu\"/>";
+  echo					"<input type=\"submit\" value=\"Cancel\" name=\"cancel\" id=\"submit\"/></br>";
   echo					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-  echo					"<input type=\"submit\" value=\"Confirm\" name=\"submit\" id=\"submit\"/></br></br></br>";
+  echo					"<input type=\"submit\" value=\"Submit\" name=\"edit\" id=\"edit\"/>";
+  echo					"<input type=\"submit\" value=\"Return to search?\" name=\"goBack\" id=\"editAnother\"/></br>";
   echo					"<label id=\"status\"></label>";
   echo				"</fieldset>";
   echo			  "</form>";
   echo		  "</div>";
   
-  if (isset($_GET['submit']))
+  echo "<script> document.getElementById('editAnother').style.visibility = 'hidden'</script>";
+  
+  if (isset($_GET['edit']))
 	 {
-		
 	  $connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-	  $SQLstring = "INSERT INTO patients(FName, LName, Gender, DOB, PostCode, CID, siblingID, ICD, Status, DateOfDeath, Comments, Extra) VALUES ('$fName', '$lName', '$Gender', '$DOB','$pCode', '$CID', ' $Null' , '$ICD', '$Null', '$Null', '$Comments', '$Null');";
+	  $SQLstring = "UPDATE patients SET FName='$fName', LName='$lName', Gender='$Gender', DOB='$DOB', PostCode='$pCode', CID='$CID', siblingID='NULL', ICD='$ICD', Status='$Status',    DateOfDeath='$DOD', Comments='$Comments', Extra='NULL' WHERE CID = '$CID'";
 	  $result = mysqli_query($connection, $SQLstring);
 	  
 	  if($result)
 	  {
-		 echo "<script> document.getElementById('status').innerHTML = 'Patient added successfully!'</script>";
-		 echo "<script> document.getElementById('edit').value = 'Add another patient?'</script>";
+		 echo "<script> document.getElementById('status').innerHTML = 'Patient edited successfully!'</script>";
+		 echo "<script> document.getElementById('edit').style.visibility = 'hidden'</script>";
 		 echo "<script> document.getElementById('submit').style.visibility = 'hidden'</script>";
-		 echo "<script> document.getElementById('menu').style.visibility = 'visible'</script>";
+		 echo "<script> document.getElementById('editAnother').style.visibility = 'visible'</script>";
 		 $accType = $_SESSION["accType"];	
-		 session_unset();
+		 session_destroy();
+		 session_start();
 		 $_SESSION["accType"] = $accType;
 	  }
-	  else
-	  {
-		  echo "<script> document.getElementById('status').innerHTML = 'Error: Duplicate Child ID'</script>";
-	  }
-	}
-  if (isset($_GET['edit']))
-  {
-	header("Location: addPatient.php");
-  	exit;  
-  }
-    if (isset($_GET['menu']))
-  {
-   $accType = $_SESSION["accType"];	
-   session_unset();
-   $_SESSION["accType"] = $accType;
-	header("Location: menu.php");
-  	exit;  
-  }
+	 }
+  if (isset($_GET['cancel']))
+	{
+		header("Location: searching.php");
+		exit;  
+  	}
+	
+  if (isset($_GET['goBack']))
+	{
+		header("Location: searching.php");
+		exit;  
+  	}
 ?>
