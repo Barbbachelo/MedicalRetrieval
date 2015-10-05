@@ -6,6 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 <head> 
  	<link rel="stylesheet" type="text/css" href="CSS/editStyle.css">
  	<link rel="stylesheet" type="text/css" href="CSS/viewform.css">
+    <link rel="stylesheet" type="text/css" href="CSS/breadcrumbCSS.css">
     <script src="script.js"></script>
     <title>Edit Patient</title>
  </head>
@@ -14,8 +15,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
         <div id="header"> 
 			<a href="login.php" class="close">Log Out</a>
         </div>
-		 <div id="header"> 
-			<a href="menu.php"class="menu">Main Menu</a>
+		 <div id="crumbs"> 
+            <?php include 'breadcrumb.php' ?>
         </div>
 </body>
 <?php
@@ -28,11 +29,13 @@ if (!empty($_SESSION) and isset($_SESSION["fName"]))
   $DOB = $_SESSION["DOB"];
   $CID = $_SESSION["CID"];
   $ICD = $_SESSION["ICD"];
+  $Status = $_SESSION["PatientStatus"];
+  $DOD = $_SESSION["DOD"];
   $Comments = $_SESSION["Comments"];
   $Null = "NULL";
   $DOB = strrev($DOB);
   
- echo			"<div id=\"div\">";
+  echo			"<div id=\"personInfo1\">";
   echo				"<form> ";
   echo				"<fieldset>";
   echo					"<legend>Edit Patient: Personal Information</legend>";
@@ -51,10 +54,10 @@ if (!empty($_SESSION) and isset($_SESSION["fName"]))
   echo		  "</div>	";
   
   
-  echo 		"<div id=\"div2\" style=\"visibility:hidden;\" >";
+  echo 		"<div id=\"personInfo2\" style=\"visibility:hidden;\" >";
   echo			  "<fieldset>";
   echo				  "<legend>Edit Patient: Medical Information</legend>";
-  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a space\" value=\"" . $ICD . "\"name=\"icd\" /> <br> "; 
+  echo					"<label for=\"icd\">ICD: </label><input type=\"text\" placeholder=\"Seperate each ICD with a semi-colon (;)\" value=\"" . $ICD . "\"name=\"icd\" /> <br> "; 
   echo					"<fieldset id=\"RadioField\">";	
   echo					"<legend id=\"RadioLegend\">Patient Status</legend>";	
   echo					"<input type=\"radio\" name=\"PatientStatus\" onclick=\"showDateOfDeath()\" value=\"Alive\" id=\"alive\" value=\"alive\" checked>Alive &nbsp; &nbsp;";  
@@ -146,7 +149,7 @@ if (!empty($_SESSION) and isset($_SESSION["fName"]))
   $_SESSION["CID"] = $CID;
   $_SESSION["ICD"] = $ICD;
   $_SESSION["Comments"] = $Comments;
-  $_SESSION["Status"] = $Status;
+  $_SESSION["PatientStatus"] = $Status;
   $_SESSION["DOD"] = $dodReversed;
   
   header("Location: confirmEdit.php");

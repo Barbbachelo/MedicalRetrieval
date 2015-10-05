@@ -1,61 +1,75 @@
+<?php
+// Start the session
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+?>
 <html>
 
 	<head> 
     	<script src = "searchfunction.js"></script>
 		<link rel="stylesheet" type="text/css" href="CSS/searchCSS.css">
+        <link rel="stylesheet" type="text/css" href="CSS/breadcrumbCSS.css">
 		
 		<title> Searching </title>
 	</head>
 	
 	<body>
+	        <div id="header"> 
+			<a href="login.php" class="close">Log Out</a>
+        </div>
+	<div id="crumbs"> 
+            <?php include 'breadcrumb.php' ?>
+        </div>
+        
 	<center>
-			<form method="post">
+	  <form method="post">
+         
 			<fieldset>
 			<legend>Patient Search</legend>
-
-				<input type="checkbox" onclick='handleClick1(this);' value="childID"> Child ID
-								<div id="cid">	
+				
+				<input type="checkbox" onclick='handleClick1(this);' value="childID" > Child ID
+				<div id="cid">	
 				</div>
 
 				<input type="checkbox" onclick='handleClick2(this);' value="fname"> First Name 
-								<div id="fname">	
+				<div id="fname">	
 				</div>
 				<input type="checkbox" onclick='handleClick3(this);' value="lname"> Last Name 
-								<div id="lname">	
+				<div id="lname">	
 				</div>	
 				<input type="checkbox" onclick='handleClick4(this);' value="dob"> Date of Birth 
-								<div id="dob">	
+				<div id="dob">	
 				</div>
 				<input type="checkbox" onclick='handleClick5(this);' value="pcode"> Postcode 
-								<div id="pcode">	
+				<div id="pcode">	
 				</div>
 				<input type="checkbox" onclick='handleClick6(this);' value="gender"> Gender 
-								<div id="gender">	
+				<div id="gender">	
 				</div> 
 				<input type="checkbox" onclick='handleClick7(this);' value="icd"> ICD
-						<div id="icd">
+				<div id="icd">
 				</div>
-</br>
+                
+				</br>
+                
 				<div id="button">
 			    </div>
 			 
-			
 			<div id="information">
 			</div>
+            
 			</fieldset>
 			</form>
 
 	</center>
 
 		
-	</body>
+</body>
 
 <?php
 	
-	//This allows connection to the Database ocally hosted on the server
+	//This allows connection to the Database locally hosted on the server
 	//Needs to be MODIFIED depending on machine
 	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-
 
 	//If the user decides to click on Search button
 	//PLEASE NOTE THAT MODIFICATION needed depending on what the column headings are actually called
@@ -75,7 +89,7 @@
 
 				//Modify column name here
 				//This populates the WHERE clause later on that is needed to perform the sql query
-				$string .= " `FName` = '$fName'";
+				$string .="`FName` = '$fName'";
 			}
 		}
 		
@@ -89,11 +103,11 @@
 				
 				if (strlen($string) != 0)
 				{
-					$string.= " and `LName` = '$lName'";
+					$string.=" and `LName` = '$lName'";
 				}
 				else
 				{
-					$string.= " `LName` = '$lName'";
+					$string.="`LName` = '$lName'";
 				}
 			}
 		}
@@ -103,15 +117,15 @@
 		{
 			$pid = $_POST['pcode'];
 			unset($_POST['pcode']);
-			if (strlen($pcode) != 0)
+			if (strlen($pid) != 0)
 			{
 				if (strlen($string) != 0)
 				{
-					$string.= " and `Postcode` = '$pcode'";
+					$string.=" and `PostCode` = '$pid'";
 				}
 				else
 				{
-					$string.= " `Postcode` = '$pcode'";
+					$string.="`PostCode` = '$pid'";
 				}
 			}
 		}
@@ -119,19 +133,43 @@
 		//Checks for Date of Birth Input
 		if (isset($_POST['dob']))
 		{
+			
+			
 			$dob = $_POST['dob'];
 			unset($_POST['dob']);
-			if (strlen($dob) != 0)
-			{
-				if (strlen($dob) != 0)
+			
+			
+			$date_regex = '/^(19|20)\d\d[\-\/.](0[1-9]|1[012])[\-\/.](0[1-9]|[12][0-9]|3[01])$/';
+			$newdate = $dob;
+			
+			if (!preg_match($date_regex, $newdate)) {
+				echo '<br>Your hire date entry does not match the YYYY-MM-DD required format.<br>';
+			} else {
+				if (strlen($string) != 0)
 				{
-					$string.= " and `DOB` = '$dob'";
+					$string.=" and `DOB` = '$newdate'";
+					
 				}
 				else
 				{
-					$string.= " `DOB` = '$dob'";
-				}
+					$string.="`DOB` = '$newdate'";
+					
+				};      
 			}
+			
+			//This is causing the issue, $dob is of Date type YYYY-MM-DD not a string
+			// if (strlen($dob) != 0)
+			// {
+				// if (strlen($dob) != 0)
+				// {
+					// $string.= " and `DOB` = '$dob'";
+				// }
+				// else
+				// {
+					// $string.= " `DOB` = '$dob'";
+				// }
+			// }
+		
 		}
 		
 		//Checks for gender Input
@@ -143,11 +181,11 @@
 			{
 				if (strlen($string) != 0)
 				{
-					$string.= " and `Gender` = '$gender'";
+					$string.=" and `Gender` = '$gender'";
 				}
 				else
 				{
-					$string.= " `Gender` = '$gender'";
+					$string.="`Gender` = '$gender'";
 				}
 			}
 		}
@@ -161,11 +199,11 @@
 			{
 				if (strlen($string) != 0)
 				{
-					$string.= " and `CID` = '$cid'";
+					$string.=" and `CID` = '$cid'";
 				}
 				else
 				{
-					$string.= " `CID` = '$cid'";
+					$string.="`CID` = '$cid'";
 				}
 			}
 		}
@@ -179,7 +217,7 @@
 			unset($_POST['icd']);
 			if (strlen($icd) != 0)
 			{
-				$temp1 = explode(" ", $icd);
+				$temp1 = explode("|", $icd);
 				
 				$temp2 = "`ICD` LIKE '%$temp1[0]%'";
 				if (count($temp1) > 1)
@@ -218,7 +256,8 @@
 		else
 		{
 			//Table is created here to show data on page
-			echo "<table id='menu'>";
+			echo "<center>";
+			echo "<table>";
 			echo "<tr>
 			<th>CID</th>
 			<th>First Name</th>
@@ -227,6 +266,8 @@
 			<th>PostCode</th>
 			<th>Gender</th>
 			<th>ICD</th>
+			<th></th>
+			<th></th>
 			</tr>";
 			
 			//Grabs a row whicih is a search result
@@ -241,12 +282,24 @@
 				echo "<td>{$row[3]}</td>";
 				echo "<td>{$row[4]}</td>";
 				echo "<td>{$row[2]}</td>";
-				echo "<td>{$row[7]}</td></tr>";
+				echo "<td>{$row[7]}</td>";
+				$_SESSION["CID"] = $row[5];
+				$_SESSION["fName"] = $row[0];
+				$_SESSION["lName"] = $row[1];
+				$_SESSION["Gender"] = $row[2];
+				$_SESSION["pCode"] = $row[4];
+				$_SESSION["DOB"] = $row[3];
+				$_SESSION["ICD"] = $row[7];
+				$_SESSION["Comments"] = $row[10];
+				echo "<td><a href='editPatientFromSearch.php'>Edit </a></td>";
+				echo "<td><a href='deletePatient.php'>Delete </a></td></tr>";
+				
 				$row = mysqli_fetch_row($search);
 			}
 			
 			
 			echo "</table>";	
+			echo "</center>";
 			
 			//Frees up result to allow another search
 			mysqli_free_result($search);
@@ -259,7 +312,6 @@
 		
 		
 		
-	//If the export button is clicked on
 	//This export required similar code to search because it needed a search result to be stored within the export block to extract data from, 
 	//tried to store the search result in a variable but we were unable to solve that problem
 	
@@ -277,10 +329,9 @@
 			unset($_POST['fname']);
 			if (strlen($fName) != 0)
 			{
-
 				//Modify column name here
 				//This populates the WHERE clause later on that is needed to perform the sql query
-				$string .= " `FName` = '$fName'";
+				$string.= " `FName` = '$fName'";
 			}
 		}
 		
@@ -357,8 +408,25 @@
 			}
 		}
 		
-		//Checks for icd input
+		//Child ID input is checked
+		if (isset($_POST['cid']))
+		{
+			$cid = $_POST['cid'];
+			unset($_POST['cid']);
+			if (strlen($cid) != 0)
+			{
+				if (strlen($string) != 0)
+				{
+					$string.= " and `CID` = '$cid'";
+				}
+				else
+				{
+					$string.= " `CID` = '$cid'";
+				}
+			}
+		}
 		
+		//Checks for ICD input
 		if (isset($_POST['icd']))
 		{
 			$icd = $_POST['icd'];
@@ -366,7 +434,7 @@
 			unset($_POST['icd']);
 			if (strlen($icd) != 0)
 			{
-				$temp1 = explode(" ", $icd);
+				$temp1 = explode("|", $icd);
 				
 				$temp2 = "`ICD` LIKE '%$temp1[0]%'";
 				if (count($temp1) > 1)
@@ -394,7 +462,7 @@
 		
 		$search = mysqli_query($connection, $searchQuery);
 
-		$row_count = mysqli_num_rows($search);
+		$row_count = mysqli_num_rows($search) or die(mysqli_error($connection));
 		
 
 		if ($row_count == 0)

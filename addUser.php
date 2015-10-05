@@ -6,14 +6,15 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   <head> 
     <link rel="stylesheet" type="text/css" href="CSS/forms.css">
     <link rel="stylesheet" type="text/css" href="CSS/addStyle.css">
+    <link rel="stylesheet" type="text/css" href="CSS/breadcrumbCSS.css">
     <title>Login</title> 
   </head> 
   <body>
   <div id="header"> 
 			<a href="login.php" class="close">Log Out</a>
         </div>
-		 <div id="header"> 
-			<a href="menu.php"class="menu">Main Menu</a>
+		  <div id="crumbs"> 
+            <?php include 'breadcrumb.php' ?>
         </div>
   <div align="center">
     <form> 

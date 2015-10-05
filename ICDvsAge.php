@@ -5,26 +5,27 @@ include("pChart/class/pDraw.class.php");
 include("pChart/class/pPie.class.php");
 include("pChart/class/pImage.class.php");
 
-function ICDvspCodeBar($postcode)
+function ICDvsAgeBar($ICD)
 {
 
 	/* Create and populate the pData object */
 	$MyData = new pData(); 
 	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-	$searchQuery = "Select ICD from patients where PostCode = '$postcode'";
+	$searchQuery = "Select DOB from patients where ICD = '$ICD'";
 	$search = mysqli_query($connection, $searchQuery);
-	while($row = mysqli_fetch_assoc($search))
+	while($row = mysqli_fetch_row($search))
 	{
-		$ICD[] = $row["ICD"];
+		$DOB = new DateTime($row[0]);
+		$Age[] = date_diff($DOB, date_create('today'))->y;
  	}
-	$count = array_count_values($ICD);
-	$ICD = array_unique($ICD, SORT_REGULAR);
+	$count = array_count_values($Age);
+	$Age = array_unique($Age, SORT_REGULAR);
 	
 	$MyData->addPoints($count,"Number of Patients");
-	$MyData->addPoints($ICD,"ICD");
-	$MyData->setSerieDescription("ICD", "ICD");
-	$MyData->setAbscissa("ICD");
-	$MyData->setAbscissaName("ICD");
+	$MyData->addPoints($Age,"DOB");
+	$MyData->setSerieDescription("DOB", "DOB");
+	$MyData->setAbscissa("DOB");
+	$MyData->setAbscissaName("DOB");
 	$MyData->loadPalette("pChart/palettes/blind.color", TRUE);
 	
 	/* Create the cache object */
@@ -63,27 +64,27 @@ function ICDvspCodeBar($postcode)
  $myPicture->render("chart.png");
 }
 
-function ICDvspCodePie($postcode)
+function ICDvsAgePie($ICD)
 {
 /* Create and populate the pData object */
-  $MyData = new pData();   
-  
-  $connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-  $searchQuery = "Select ICD from patients where PostCode = '$postcode'";
-  $search = mysqli_query($connection, $searchQuery);
-  while($row = mysqli_fetch_assoc($search))
-  {
-	  $ICD[] = $row["ICD"];
-  }
-  $count = array_count_values($ICD);
- $ICD = array_unique($ICD, SORT_REGULAR);  
+	$MyData = new pData(); 
+	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
+	$searchQuery = "Select DOB from patients where ICD = '$ICD'";
+	$search = mysqli_query($connection, $searchQuery);
+	while($row = mysqli_fetch_row($search))
+	{
+		$DOB = new DateTime($row[0]);
+		$Age[] = date_diff($DOB, date_create('today'))->y; 
+	}
+		$count = array_count_values($Age);
+	$Age = array_unique($Age, SORT_REGULAR);
   
   $MyData->addPoints($count,"Number of Patients"); 
-  $MyData->setSerieDescription("Number of Patients","ICD");
+  $MyData->setSerieDescription("Number of Patients","Age");
    
 /* Define the absissa serie */
-$MyData->addPoints($ICD ,"ICD");
-$MyData->setAbscissa("ICD");
+$MyData->addPoints($Age ,"Age");
+$MyData->setAbscissa("Age");
 $MyData->loadPalette("pChart/palettes/blind.color", TRUE);
  
 /* Create the pChart object */
@@ -103,7 +104,7 @@ $myPicture->drawRectangle(0,0,299,259,array("R"=>0,"G"=>0,"B"=>0));
  
 /* Write the picture title */ 
 $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Silkscreen.ttf","FontSize"=>6));
-$myPicture->drawText(10,13,"ICD in postcode '$postcode'",array("R"=>255,"G"=>255,"B"=>255));
+$myPicture->drawText(10,13,"Ages for '$ICD'",array("R"=>255,"G"=>255,"B"=>255));
  
 /* Set the default font properties */ 
 $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Forgotte.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
@@ -112,14 +113,13 @@ $myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Forgotte.ttf","Fon
 $PieChart = new pPie($myPicture,$MyData);
  
 /* Draw an AA pie chart */ 
-$PieChart->draw3DPie(160,140,array("WriteValues"=>TRUE, "Radius"=>70,"DrawLabels"=>TRUE,"LabelStacked"=>TRUE,"Border"=>TRUE));
+$PieChart->draw3DPie(160,140,array( "WriteValues"=>TRUE, "Radius"=>70,"DrawLabels"=>TRUE,"LabelStacked"=>TRUE,"Border"=>TRUE));
  
 /* Write the legend box */ 
 $myPicture->setShadow(FALSE);
 $PieChart->drawPieLegend(15,40,array("Alpha"=>20));
  
 /* Render the picture (choose the best way) */
-$myPicture->render("chart.png");
-	
+$myPicture->render("chart.png");	
 }
 ?>

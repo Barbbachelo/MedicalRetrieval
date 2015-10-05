@@ -2,6 +2,7 @@
 <head> 
  	<link rel="stylesheet" type="text/css" href="CSS/viewStyle.css">
  	<link rel="stylesheet" type="text/css" href="CSS/viewform.css">
+    <link rel="stylesheet" type="text/css" href="CSS/breadcrumbCSS.css">
     <script src="graphs.js"></script>
     <title>View Data</title> 
  </head>
@@ -10,24 +11,23 @@
         <div id="header"> 
 			<a href="login.php" class="close">Log Out</a>
         </div>
-		 <div id="header"> 
-			<a href="menu.php"class="menu">Main Menu</a>
+        <div id="crumbs">
+			<?php include 'breadcrumb.php' ?>
+        </div>	
+		
+        <center>
+        <form> 
+        <fieldset>
+            <legend>View Data</legend>
+            <label for="ICD">ICD: </label><input type="text" name="icd" />
+            <input type="submit" value="Search" name="submit" id="submit"/>
+        </fieldset>
+     	</form>
+		
+        <div id="graph">
+		<img src=" " id="imageBox" ></img>
         </div>
-		<div id="div">
-				<form> 
-				<fieldset>
-					<legend>View Data</legend>
-					<label for="fname">First Name: </label><input type="text" name="fname" />
-					<label for="lname">Last Name: </label><input type="text" name="lname" />
-					<label for="gender">Gender: </label><input type="text" name="gender" />
-					<label for="cid">Child ID: </label><input type="text" name="cid" />
-					<label for="pCode">Post Code: </label><input type="text" name="pCode" />
-					<label for="dob">D.O.B: </label><input type="text" name="dob" />
-					<label for="icd">ICD: </label><input type="text" name="icd" /> 
-					<input type="submit" value="Search" name="submit" id="submit"/>
-				</fieldset>
-			  </form>
-		  </div>
+		</center>
   </body>
 </html>
  <?php
@@ -44,8 +44,8 @@ if (isset($_GET['submit']))
 	{
 		$pCode = $_GET['pCode'];
 	}
-	include("ICDvspCode.php");
-	ICDvspCodeBar($pCode);
-	echo "<img src=\"chart.png\"></img>";
+	include("ICDvsAge.php");
+	ICDvsAgePie($ICD);
+	echo "<script> document.getElementById('imageBox').src = 'chart.png'</script>";
  }
 ?>

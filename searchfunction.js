@@ -34,7 +34,7 @@
 				
 				if (cb.checked == true)
 				{
-					document.getElementById("cid").innerHTML= "<input type='text' maxlength='5' placeholder='Unique 5 digit ID' name='cid' />";
+					document.getElementById("cid").innerHTML= "<input type='text' maxlength='5' placeholder='Unique 5 digit ID' name='cid'  />";
 					
 				}
 				else
@@ -75,7 +75,7 @@
 			{
 				if (cb.checked == true)
 				{
-					document.getElementById("dob").innerHTML="<input type=\"text\" placeholder=\"DD/MM/YYYY\" name=\"dob\" />";
+					document.getElementById("dob").innerHTML="<input type=\"text\" placeholder=\"YYYY-MM-DD\" name=\"dob\" />";
 				}
 				else
 				{
@@ -88,7 +88,7 @@
 			{
 				if (cb.checked == true)
 				{
-					document.getElementById("pcode").innerHTML="<input type=\"text\" name=\"pCode\" />";
+					document.getElementById("pcode").innerHTML="<input type=\"text\" name=\"pcode\" />";
 				}
 				else
 				{
@@ -115,7 +115,7 @@
 			{
 				if (cb.checked == true)
 				{
-					document.getElementById("icd").innerHTML="<input type=\"text\" name=\"icd\" placeholder=\"separate by space\" />";
+					document.getElementById("icd").innerHTML="<input type=\"text\" name=\"icd\" placeholder=\"separate by vertical slash (|)\" />";
 				}
 				else
 				{

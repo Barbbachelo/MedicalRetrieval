@@ -5,26 +5,26 @@ include("pChart/class/pDraw.class.php");
 include("pChart/class/pPie.class.php");
 include("pChart/class/pImage.class.php");
 
-function ICDvspCodeBar($postcode)
+function GenderVsICDBar($ICD)
 {
 
 	/* Create and populate the pData object */
 	$MyData = new pData(); 
 	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-	$searchQuery = "Select ICD from patients where PostCode = '$postcode'";
+	$searchQuery = "Select Gender from patients where ICD = '$ICD'";
 	$search = mysqli_query($connection, $searchQuery);
-	while($row = mysqli_fetch_assoc($search))
+	while($row = mysqli_fetch_row($search))
 	{
-		$ICD[] = $row["ICD"];
+		$Gender[] = $row[0];
  	}
-	$count = array_count_values($ICD);
-	$ICD = array_unique($ICD, SORT_REGULAR);
+	$count = array_count_values($Gender);
+	$Gender = array_unique($Gender, SORT_REGULAR);
 	
 	$MyData->addPoints($count,"Number of Patients");
-	$MyData->addPoints($ICD,"ICD");
-	$MyData->setSerieDescription("ICD", "ICD");
-	$MyData->setAbscissa("ICD");
-	$MyData->setAbscissaName("ICD");
+	$MyData->addPoints($Gender,"Gender");
+	$MyData->setSerieDescription("Gender", "Gender");
+	$MyData->setAbscissa("Gender");
+	$MyData->setAbscissaName("Gender");
 	$MyData->loadPalette("pChart/palettes/blind.color", TRUE);
 	
 	/* Create the cache object */
@@ -63,27 +63,26 @@ function ICDvspCodeBar($postcode)
  $myPicture->render("chart.png");
 }
 
-function ICDvspCodePie($postcode)
+function GenderVsICDPie($ICD)
 {
 /* Create and populate the pData object */
-  $MyData = new pData();   
-  
-  $connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
-  $searchQuery = "Select ICD from patients where PostCode = '$postcode'";
-  $search = mysqli_query($connection, $searchQuery);
-  while($row = mysqli_fetch_assoc($search))
-  {
-	  $ICD[] = $row["ICD"];
-  }
-  $count = array_count_values($ICD);
- $ICD = array_unique($ICD, SORT_REGULAR);  
+	$MyData = new pData(); 
+	$connection = mysqli_connect("127.0.0.1", "root", "", "medicalretrieval");
+	$searchQuery = "Select Gender from patients where ICD = '$ICD'";
+	$search = mysqli_query($connection, $searchQuery);
+	while($row = mysqli_fetch_row($search))
+	{
+		$Gender[] = $row[0];
+ 	}
+	$count = array_count_values($Gender);
+	$Gender = array_unique($Gender, SORT_REGULAR);
   
   $MyData->addPoints($count,"Number of Patients"); 
-  $MyData->setSerieDescription("Number of Patients","ICD");
+  $MyData->setSerieDescription("Number of Patients","Gender");
    
 /* Define the absissa serie */
-$MyData->addPoints($ICD ,"ICD");
-$MyData->setAbscissa("ICD");
+$MyData->addPoints($Gender ,"Gender");
+$MyData->setAbscissa("Gender");
 $MyData->loadPalette("pChart/palettes/blind.color", TRUE);
  
 /* Create the pChart object */
@@ -102,11 +101,11 @@ $myPicture->drawGradientArea(0,0,300,20,DIRECTION_VERTICAL,array("StartR"=>0,"St
 $myPicture->drawRectangle(0,0,299,259,array("R"=>0,"G"=>0,"B"=>0));
  
 /* Write the picture title */ 
-$myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Silkscreen.ttf","FontSize"=>6));
-$myPicture->drawText(10,13,"ICD in postcode '$postcode'",array("R"=>255,"G"=>255,"B"=>255));
+$myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Silkscreen.ttf","FontSize"=>8));
+$myPicture->drawText(10,13,"Patient genders with '$ICD'",array("R"=>255,"G"=>255,"B"=>255));
  
 /* Set the default font properties */ 
-$myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Forgotte.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
+$myPicture->setFontProperties(array("FontName"=>"pChart/fonts/Forgotte.ttf","FontSize"=>12,"R"=>80,"G"=>80,"B"=>80));
  
 /* Create the pPie object */ 
 $PieChart = new pPie($myPicture,$MyData);
@@ -119,7 +118,6 @@ $myPicture->setShadow(FALSE);
 $PieChart->drawPieLegend(15,40,array("Alpha"=>20));
  
 /* Render the picture (choose the best way) */
-$myPicture->render("chart.png");
-	
+$myPicture->render("chart.png");	
 }
 ?>
